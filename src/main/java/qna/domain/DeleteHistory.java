@@ -1,21 +1,29 @@
 package qna.domain;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
 public class DeleteHistory {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private ContentType contentType;
+
+    @Column(name = "content_id")
     private Long contentId;
-    private Long deletedById;
+
+    @Column(name = "content_type")
+    private String contentType;
+
+    @Column(name = "create_date")
     private LocalDateTime createDate = LocalDateTime.now();
 
-    public DeleteHistory(ContentType contentType, Long contentId, Long deletedById, LocalDateTime createDate) {
-        this.contentType = contentType;
-        this.contentId = contentId;
-        this.deletedById = deletedById;
-        this.createDate = createDate;
-    }
+    @Column(name = "deleted_by_id")
+    private Long deletedById;
+
+
+
 
     @Override
     public boolean equals(Object o) {
